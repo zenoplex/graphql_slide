@@ -1,0 +1,9 @@
+default:
+  title:       "GraphQL"
+  description: "Slide for GraphQL study session"
+  domain:      ""
+  og:
+    image: "images/ogp/default.png"
+    type:  "website"
+
+index:

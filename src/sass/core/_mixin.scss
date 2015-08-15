@@ -1,0 +1,9 @@
+//----------------------------------------------------------
+// Get Color Function
+//
+// ex: color: color(red);
+// ex: color: color(red, light);
+//----------------------------------------------------------
+@function color($color, $tone: "base") {
+  @return map-get(map-get($color-palet, $color), $tone);
+}

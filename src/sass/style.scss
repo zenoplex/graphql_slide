@@ -1,0 +1,39 @@
+@import "bourbon";
+
+// =======================================
+// Core
+// =======================================
+@import "./core/reset";
+@import "./core/variable";
+@import "./core/mixin";
+@import "./core/base";
+
+// =======================================
+// Layouts
+// =======================================
+@import "reveal";
+@import "./layouts/theme";
+// =======================================
+// Components
+// =======================================
+@import "./components/code";
+@import "./components/notes";
+
+// =======================================
+// Projects
+// =======================================
+
+.img {
+  max-width: 100%;
+  height: auto;
+
+  &__avatar {
+    max-width: 100px;
+    background-color: #fff;
+    padding: 15px;
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+}

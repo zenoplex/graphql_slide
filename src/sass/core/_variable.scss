@@ -1,0 +1,66 @@
+//----------------------------------------------------------
+// Base Colors
+//----------------------------------------------------------
+
+// Flat UI Colors - https://flatuicolors.com/
+$turquoise:      #1abc9c;
+$emerald:        #2ecc71;
+$peter-river:    #3498db;
+$amethyst:       #9b59b6;
+$wet-asphalt:    #34495e;
+$green-sea:      #16a085;
+$nephritis:      #27ae60;
+$belize-hole:    #2980b9;
+$wisteria:       #8e44ad;
+$midnight-blue:  #2c3e50;
+$sun-flower:     #f1c40f;
+$carrot:         #e67e22;
+$alizarin:       #e74c3c;
+$clouds:         #ecf0f1;
+$concrete:       #95a5a6;
+$orange:         #f39c12;
+$pumpkin:        #d35400;
+$pomegranate:    #c0392b;
+$silver:         #bdc3c7;
+$asbestos:       #7f8c8d;
+
+$blue:           desaturate($peter-river, 10%);
+$red:            desaturate($alizarin, 10%);
+$black:          desaturate($wet-asphalt, 10%);
+$white:          desaturate($clouds, 10%);
+
+//----------------------------------------------------------
+// Color Palet
+//----------------------------------------------------------
+$color-palet: (
+  white: (
+    base:  $white,
+    dark:  darken($white, 5%),
+    light: lighten($white, 5%)
+  ),
+  black: (
+    base:  $black,
+    dark:  darken($black, 5%),
+    light: lighten($black, 5%)
+  ),
+  blue: (
+    base:  $blue,
+    dark:  darken($blue, 5%),
+    light: lighten($blue, 5%)
+  ),
+  red: (
+    base:  $red,
+    dark:  darken($red, 5%),
+    light: lighten($red, 5%)
+  )
+) !default;
+
+//----------------------------------------------------------
+// Typo Settings
+//----------------------------------------------------------
+$font-family: "Apple TP", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size: 16;
+$line-height: 1.6;
+
+$text-color: $black;
+$link-color: $blue;

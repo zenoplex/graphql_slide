@@ -1,0 +1,10 @@
+import './gulp/tasks/build';
+import './gulp/tasks/clean';
+import './gulp/tasks/copy';
+import './gulp/tasks/fonts';
+import './gulp/tasks/images';
+import './gulp/tasks/jade';
+import './gulp/tasks/lint';
+import './gulp/tasks/sass';
+import './gulp/tasks/watch';
+import './gulp/tasks/webpack';

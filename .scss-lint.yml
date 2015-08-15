@@ -1,0 +1,17 @@
+# -----------------------------------------------------
+# Rule Set
+# https://github.com/brigade/scss-lint/blob/master/lib/scss_lint/linter/README.md
+# -----------------------------------------------------
+linters:
+  ColorKeyword:
+    enabled:    false
+  HexLength:
+    style:      long
+  LeadingZero:
+    style:      include_zero
+  PropertySortOrder:
+    order:      recess
+  SelectorFormat:
+    convention: hyphenated_BEM
+  StringQuotes:
+    style:      double_quotes

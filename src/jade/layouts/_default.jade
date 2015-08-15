@@ -1,0 +1,15 @@
+include ../partials/_head
+
+block vars
+  - var data = {}
+
+doctype html
+html(lang="ja" prefix="og: http://ogp.me/ns#")
+  head
+    mixin head(data)
+  body
+    .reveal
+      .slides
+        block content
+    
+    script(src='/js/app.bundle.js')

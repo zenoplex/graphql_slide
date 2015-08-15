@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Apple TP";
+  src: url("/fonts/apple-tp_thin.woff") format('woff');
+}
+
+html,
+body {
+  font-family: $font-family;
+  font-size: $base-font-size;
+  line-height: $line-height;
+  color: $text-color;
+}
+
+a {
+  color: $link-color;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

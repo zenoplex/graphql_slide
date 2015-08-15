@@ -1,0 +1,87 @@
+
+section
+  h2 GraphQL
+  
+  p.fragment データ取得／操作を行うサーバーとクライアント間の共通インターフェイス
+  
+  aside.notes
+    | facebook社が 2012年開発し、サーバー側とクライアントが共通のインターフェイスを用いてデータの通信および操作を行います
+  
+
+section
+  h2 REST
+  
+  p.fragment GET id
+  p.fragment GET friends
+  p.fragment GET pets
+
+  
+section
+  h2 GraphQL
+  
+  ul
+    li Query based: a single request fulfils the client's data needs
+    li Query language
+    li Programming language agnostic 
+    
+  aside.notes
+    | クライアントは GraphQL サーバーに対してクエリを用いてリクエストを送信します。レスポンスのフォーマットはサーバーではなくクライアントサイドのクエリにて定義されています。
+    | これを client-specified-queries と呼びます。
+  
+    | データの構造は従来の REST API と異なりハードコードされていません。
+    | これによりクライアントからのデータの取得がより柔軟になります。
+  
+section
+  h2 Example
+  
+  table
+    tr
+      td
+        pre
+          code(data-trim contenteditable).
+            {
+              user(id: 1) {
+                name
+                age
+                  friends {
+                    name
+                  }
+                }
+              }
+          
+      td
+        pre
+          code(data-trim contenteditable).
+            {
+              user(id: 1) {
+                name
+                age
+                  friends {
+                    name
+                  }
+                }
+              }
+
+      
+  
+section
+  h2 Request Comparison
+  
+  p GraphQL
+  pre
+    code(data-trim contenteditable).
+      {
+         user(id: 1) {
+           name
+           age
+           friends {
+             name
+           }
+         }
+       }
+           
+  p REST
+  pre
+    code(data-trim contenteditable).
+      GET /users/1
+      GET /users/1/friends  
