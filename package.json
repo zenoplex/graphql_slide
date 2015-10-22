@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "headjs": "git+ssh://git@github.com/headjs/headjs.git",
+    "highlight.js": "^8.9.1",
     "prismjs": "0.0.1",
     "reveal.js": "^3.1.0"
   },
