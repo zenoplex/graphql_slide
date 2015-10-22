@@ -4,7 +4,7 @@
 // Core
 // =======================================
 @import "./core/reset";
-@import "./core/variable";
+@import "./core/variables";
 @import "./core/mixin";
 @import "./core/base";
 
@@ -29,7 +29,7 @@
 
   &__avatar {
     max-width: 100px;
-    background-color: #fff;
+    background: #fff;
     padding: 15px;
   }
 

@@ -1,1 +1,13 @@
 //@import "sanitize";
+.reveal {
+  section {
+    img {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+  }
+  table {
+    width: 100%;
+  }
+}
