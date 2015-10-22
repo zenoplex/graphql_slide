@@ -3,7 +3,7 @@ import config from '../config';
 
 gulp.task('copy', () => {
   gulp
-    .src(config.src.root + '/*.{xml,json}')
-    .pipe(gulp.dest(config.dist.html))
+    .src(['./node_modules/reveal.js/plugin/**/*'])
+    .pipe(gulp.dest(config.dist.html + '/plugin'))
   ;
 });

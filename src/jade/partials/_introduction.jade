@@ -1,72 +1,214 @@
-
 section
   h2 GraphQL
-  
+
   p.fragment データ取得／操作を行うサーバーとクライアント間の共通インターフェイス
-  
+
   aside.notes
     | facebook社が 2012年開発し、サーバー側とクライアントが共通のインターフェイスを用いてデータの通信および操作を行います
-  
+    | facebook ではすでに2年以上運用している実績があり、満を持してオープンソース化しています（現状はドラフト）
 
 section
   h2 REST
-  
-  p.fragment GET id
-  p.fragment GET friends
-  p.fragment GET pets
 
+  .fragment
+    p GET user id
+
+    pre
+      code(data-trim contenteditable).
+        GET /users/1
+
+  .fragment
+    p GET user's friend list
+
+    pre
+      code(data-trim contenteditable).
+        GET /users/1/friends  
+
+  .fragment
+    p GET user's friend's pet list
+      pre
+        code(data-trim contenteditable).
+          GET /users/1/friends/pets  
+
+  aside.notes
+    | 一方みんな大好きRESTはどういうものかというと…
+    | エンドポイントが細分化されているケースが多々あると思います。
+    | 絵で表すと…
+
+section
+  img(src="/images/api.svg")
+
+section
+  img(src="/images/api2.svg")
+
+section
+  img(src="/images/api3.svg")
+
+section
+  img(src="/images/api4.svg")
+
+section(data-background="/images/surprise.gif")
+  h2 何がなんだかわからない… 
+
+section
+  h2 なぜこういう問題が起きるのか？
+
+section
+  h2
+    | バックエンドAPIの設計は
+    strong ストレージ
+    | 主体
+
+  h2
+    | フロントエンドで必要なAPIは
+    strong プロダクト
+    | 主体    
   
+  aside.notes
+    | バックエンドとフロントエンドの設計思想の違い
+
 section
   h2 GraphQL
-  
+
   ul
-    li Query based: a single request fulfils the client's data needs
-    li Query language
-    li Programming language agnostic 
-    
+    li.fragment 単一のエンドポイント
+    li.fragment クエリーランゲージ
+    li.fragment 言語非依存
+
   aside.notes
+    | では GraphQLはどうか？
     | クライアントは GraphQL サーバーに対してクエリを用いてリクエストを送信します。レスポンスのフォーマットはサーバーではなくクライアントサイドのクエリにて定義されています。
     | これを client-specified-queries と呼びます。
   
     | データの構造は従来の REST API と異なりハードコードされていません。
     | これによりクライアントからのデータの取得がより柔軟になります。
+
+section
+  img(src="/images/rest_and_graphql.png")
+
+  aside.notes
+    | REST の問題点としてはエンドポイントが増えることで複雑性が増し、非効率的な処理になります。
+    | 例えばビューをちょっと変更した場合、表示に必要なデータが複数のAPIにまたがっていたりするとページ表示のタイミングで複数回APIを叩く必要がでてきたり、
+    | 表示したい情報を取得するためにリクエストを複数回チェーンしないといけない場合があったりと API によっては非常に厄介です。
+
+section
+  h2 Query
+
+  aside.notes
+    | GraphQL のリクエスト形式がどうなっているか見ていきます。
+    | まずはデータの取得方法です。
+    | GraphQL では Query と呼んでます。
   
 section
-  h2 Example
+  table
+    tr
+      td
+        pre
+          code(data-trim contenteditable).
+            // リスエスト
+            {
+              user(id: 1) {
+                name
+              }
+            }
+
+      td
+        pre
+          code(data-trim contenteditable).
+            // レスポンス
+            {
+              "user" {
+                "name": "Luke Skywalker"
+              }
+            }
+
+  aside.notes
+    | クエリの形式はいわば json にデータがないような感じです。
+    | これはユーザIDが"1"のデータをリクエストしているところです。
+    | クエリとレスポンスで帰ってくるJsonデータが同じ構造となので直感的。
+  
+  
+section
   
   table
     tr
       td
         pre
           code(data-trim contenteditable).
+            // リクエスト
             {
               user(id: 1) {
+                id
                 name
                 age
-                  friends {
-                    name
-                  }
+                friends {
+                  name
                 }
               }
-          
+            }
       td
         pre
           code(data-trim contenteditable).
+            // レスポンス
             {
-              user(id: 1) {
-                name
-                age
-                  friends {
-                    name
+              "user" {
+                "id": 1,
+                "name": "Luke Skywalker",
+                "age": 56,
+                "friends": [
+                  {
+                    "name": "Obi-Wan Kenobi"
+                  },
+                  {
+                    "name": "Yoda"
                   }
-                }
+                ]
               }
+            }
 
-      
+  aside.notes
+    | さらに複雑なデータのリクエストしてみます。
+    | リスエストの形式で必要なデータだけを取得することができます。
+    | これでデータのオーバーフェッチやアンダーフェッチを防ぐことができます。
   
 section
-  h2 Request Comparison
+  h2 Mutation
   
+  aside.notes
+    | データを表示する方法はわかりました。
+    | 当然データを変更する方法も用意されており、GraphQLではミューテーションと呼ばれています。
+
+section
+  table
+    tr
+      td
+        pre
+          code(data-trim contenteditable).
+            // リクエスト
+            mutation M{
+              addUser(name:"R2D2"){
+                name,
+                caught,
+                created
+              }
+            }
+
+      td
+        pre
+          code(data-trim contenteditable).
+            // レスポンス
+            {
+              "addUser":{
+                "name":"R2D2",
+                "caught":[],
+                "created":1445518566036
+              }
+            }
+
+          
+section
+  h2 Request Comparison
+
   p GraphQL
   pre
     code(data-trim contenteditable).
@@ -79,9 +221,41 @@ section
            }
          }
        }
-           
+
   p REST
   pre
     code(data-trim contenteditable).
       GET /users/1
       GET /users/1/friends  
+
+
+section(data-background="/images/demo.png")
+  h2 demo
+    
+
+section
+  h2 まとめ
+  
+  ul
+    li バックエンドAPIの複雑さを解消
+    li APIのバリデーション、型も使える
+    li より柔軟にフロントと連携できる
+  
+section
+  img(src="/images/graphql-ruby.svg" width="300")
+  h2 GraphQL-ruby
+  h3 
+    a(href="https://github.com/rmosolgo/graphql-ruby") https://github.com/rmosolgo/graphql-ruby
+  
+  small.fragment あとは頼んだ…
+  
+  
+section 
+  h2 ご清聴ありがとうございました
+  
+section(data-background="/images/miyamoto.gif")
+  h2 質疑応答とかないよね
+  
+ 
+
+
